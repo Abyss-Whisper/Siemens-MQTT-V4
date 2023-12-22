@@ -3,7 +3,7 @@
 # TODO: Define the MQTT client setup, publishing, and subscription logic.
 
 import paho.mqtt.client as mqtt
-from config import MQTT_BROKER, MQTT_PORT
+from config import MQTT_BROKER, MQTT_PORT, MQTT_TOPIC
 
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
@@ -17,10 +17,11 @@ def publish_model(json_data):
     client.on_publish = on_publish
 
     # Configure TLS connection with appropriate cert files
-    client.tls_set(certfile="path/to/cert.pem", keyfile="path/to/key.key")
+    #client.tls_set(certfile="path/to/cert.pem", keyfile="path/to/key.key")
 
     client.connect(MQTT_BROKER, MQTT_PORT, 60)
+    print(client.connect)
 
     # Publish the data to the appropriate topic
-    client.publish("mindsphere/topic/path", json_data)
+    client.publish(MQTT_TOPIC, json_data)
     client.disconnect()

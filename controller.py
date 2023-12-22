@@ -8,8 +8,9 @@ from model import Model, AspectType, Variable, AssetType, Asset, Mapping
 from mqtt_client import publish_model
 
 class Controller:
-    def __init__(self, ui):
-        self.ui = ui
+    #def __init__(self, ui):
+    #self.ui = ui
+    def __init__(self):
         self.model = Model(tenant_id="your_tenant_id")  # you will get this from your config or user input
 
     def create_aspect_type(self, name, description, variables):
